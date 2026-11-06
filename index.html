@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Studio Group</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100d0e;color:white;font-family:Arial,sans-serif}
+header{background:#1c1518;padding:20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:bold;font-size:17px}
+.logo span,h1 span{color:#e04450}
+nav a{color:white;text-decoration:none;margin-left:12px;font-size:12px}
+.hero{padding:65px 7%;background:linear-gradient(120deg,#4b101b,#160e11)}
+.tag{color:#ed626e;letter-spacing:3px;font-size:12px}
+h1{font-size:clamp(32px,8vw,55px);line-height:1.15}
+p{color:#c9bfc1;line-height:1.7}
+.btn{display:inline-block;background:#b92334;color:white;padding:13px 18px;text-decoration:none;border:0;border-radius:5px;cursor:pointer}
+section{padding:35px 6%}
+.search{width:100%;padding:14px;background:#241b1e;color:white;border:1px solid #57333b;border-radius:5px;margin:15px 0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filters button{padding:9px 13px;background:#281d20;color:white;border:1px solid #57333b;border-radius:20px}
+.filters .active{background:#b92334}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.book{background:#21191c;border:1px solid #493039;border-radius:7px;overflow:hidden}
+.cover{height:180px;background:linear-gradient(145deg,#641c29,#160e12);display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-weight:bold}
+.info{padding:12px}
+.info h3{font-size:14px}
+.info p{font-size:12px}
+.small{background:#b92334;color:white;border:0;padding:10px;border-radius:4px}
+#detail,#reader{display:none;background:#21191c;padding:20px;margin-top:20px;border-radius:7px;line-height:1.8}
+footer{background:#1c1518;text-align:center;padding:30px;color:#aaa;font-size:12px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}.cover{height:240px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><span>LUCKY</span> STUDIO GROUP</div>
+<nav>
+<a href="#home">HOME</a>
+<a href="#novels">NOVELS</a>
+<a href="#about">ABOUT</a>
+</nav>
+</header>
+
+<div class="hero" id="home">
+<div class="tag">OFFICIAL CREATIVE STUDIO</div>
+<h1>EVERY STORY HAS A WORLD.<br><span>EVERY WORLD HAS A STORY.</span></h1>
+<p>Selamat datang di Lucky Studio Group. Temukan cerita original, karakter menarik, dan dunia imajinasi dari karya-karya kami.</p>
+<a class="btn" href="#novels">EXPLORE OUR NOVELS →</a>
+</div>
+
+<section id="novels">
+<div class="tag">OUR COLLECTION</div>
+<h2>Featured Novels</h2>
+<p>Jelajahi berbagai cerita original kami.</p>
+<input class="search" id="search" placeholder="Cari novel..." oninput="render()">
+<div class="filters" id="filters"></div>
+<div class="grid" id="catalog"></div>
+
+<div id="detail">
+<button class="small" onclick="closeDetail()">← Kembali</button>
+<h2 id="detailTitle"></h2>
+<div class="tag" id="detailGenre"></div>
+<p id="detailDesc"></p>
+<button class="btn" onclick="openReader()">BACA NOVEL</button>
+<div id="reader">
+<h3 id="readerTitle"></h3>
+<p>Bab cerita akan diterbitkan oleh Lucky Studio Group.</p>
+<p>Naskah resmi akan ditambahkan di sini.</p>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="tag">WHO WE ARE</div>
+<h2>About Lucky Studio Group</h2>
+<p>Lucky Studio Group adalah studio kreatif independen yang menaungi berbagai karya original, cerita, karakter, dan dunia imajinasi.</p>
+</section>
+
+<footer>
+<strong>LUCKY STUDIO GROUP</strong><br>
+Official Novel & Creative Studio<br>
+© 2026 Lucky Studio Group. All Rights Reserved.
+</footer>
+
+<script>
+const novels=[
+{title:"THE HIDDEN FLESH",genre:"Horor",desc:"Kisah horor psikologis tentang trauma dan rahasia gelap manusia."},
+{title:"V-PETUALANGAN ZEARTH CHRONICLES",genre:"Fantasi",desc:"Petualangan Arfen Fredrik menjelajahi dunia Zearth."},
+{title:"DUKUN SALAH ALAMAT",genre:"Komedi",desc:"Petualangan Sukir di desa penuh kejadian mistis dan kekacauan."},
+{title:"JOMBLO DI DUNIA HANTU",genre:"Horor",desc:"Kisah supernatural di dunia para hantu."},
+{title:"IDENTITAS YANG TERTUKAR",genre:"Drama",desc:"Perjalanan Alky menghadapi perubahan identitas dan kehidupan."},
+{title:"KEHIDUPAN KEDUA: JALAN SANG PENGEMBARA",genre:"Fantasi",desc:"Perjalanan kehidupan kedua di dunia penuh keajaiban."}
+];
+let category="Semua",selected=null;
+function renderFilters(){
+let genres=["Semua",...new Set(novels.map(n=>n.genre))];
+document.getElementById("filters").innerHTML=genres.map(g=>`<button class="${g===category?'active':''}" onclick="category='${g}';renderFilters();render()">${g}</button>`).join("");
+}
+function render(){
+let q=document.getElementById("search").value.toLowerCase();
+let list=novels.filter(n=>(category==="Semua"||n.genre===category)&&n.title.toLowerCase().includes(q));
+document.getElementById("catalog").innerHTML=list.map((n)=>`
+<div class="book">
+<div class="cover">${n.title}</div>
+<div class="info">
+<h3>${n.title}</h3>
+<div class="tag">${n.genre}</div>
+<p>${n.desc}</p>
+<button class="small" onclick="showDetail('${n.title}')">Detail Novel</button>
+</div></div>`).join("")||"<p>Novel tidak ditemukan.</p>";
+}
+function showDetail(title){
+selected=novels.find(n=>n.title===title);
+detailTitle.textContent=selected.title;
+detailGenre.textContent=selected.genre;
+detailDesc.textContent=selected.desc;
+detail.style.display="block";
+reader.style.display="none";
+detail.scrollIntoView({behavior:"smooth"});
+}
+function closeDetail(){detail.style.display="none"}
+function openReader(){
+readerTitle.textContent=selected.title;
+reader.style.display="block";
+reader.scrollIntoView({behavior:"smooth"});
+}
+renderFilters();render();
+</script>
+</body>
+</html>
