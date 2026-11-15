@@ -28,9 +28,36 @@
 .music-dock.collapsed .music-head{border-radius:11px}
 @media(max-width:480px){.music-dock{right:10px;bottom:10px}.music-dock:not(.collapsed){width:calc(100vw - 20px)}}
 
+
+/* LSG MEMBER LOGIN & REGISTRATION */
+.account-nav{background:#b92334!important;border:1px solid #e04450!important;border-radius:6px!important}
+.auth-overlay{display:none;position:fixed;inset:0;z-index:100;background:#000b;padding:18px;align-items:center;justify-content:center}
+.auth-overlay.open{display:flex}
+.auth-card{width:min(440px,100%);max-height:92vh;overflow:auto;background:#21191c;border:1px solid #75404b;border-radius:14px;padding:22px;box-shadow:0 20px 70px #000b;position:relative}
+.auth-close{position:absolute;right:14px;top:12px;background:#38272d;color:#fff;border:1px solid #62404a;border-radius:7px;padding:6px 10px;cursor:pointer}
+.auth-brand{text-align:center;font-weight:800;letter-spacing:1px;margin:4px 0 5px;font-size:19px}
+.auth-brand span{color:#ed626e}
+.auth-sub{text-align:center;color:#c9bfc1;font-size:12px;margin:0 0 20px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:18px}
+.auth-tab{background:#302126;border:1px solid #57333b;color:#ddd;padding:10px;border-radius:7px;cursor:pointer}
+.auth-tab.active{background:#b92334;border-color:#e04450;color:#fff}
+.auth-form{display:grid;gap:11px}
+.auth-field{display:grid;gap:6px;color:#e9dfe1;font-size:12px}
+.auth-field input{width:100%;padding:12px;background:#120e10;border:1px solid #57333b;border-radius:7px;color:#fff;outline:none}
+.auth-field input:focus{border-color:#e04450}
+.auth-submit{width:100%;padding:13px;background:#b92334;border:0;border-radius:7px;color:white;font-weight:bold;cursor:pointer;margin-top:4px}
+.auth-submit:disabled{opacity:.55;cursor:wait}
+.auth-message{font-size:12px;line-height:1.5;padding:10px;border-radius:7px;display:none}
+.auth-message.show{display:block}
+.auth-message.error{background:#4a1c25;color:#ffc5cb}
+.auth-message.success{background:#183c2a;color:#b7f1c9}
+.auth-note{font-size:11px;color:#aaa;line-height:1.5;text-align:center;margin:13px 0 0}
+.member-chip{display:none;color:#f6dfe3;font-size:11px;border:1px solid #75404b;border-radius:20px;padding:7px 9px;max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:480px){header{align-items:flex-start;flex-wrap:wrap}nav{width:100%;justify-content:flex-end;flex-wrap:wrap}nav button{padding:8px 9px}.member-chip{margin-left:auto}}
+
 </style></head>
 <body>
-<header><div class="logo" role="button" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter')goHome()"><span>LUCKY</span> STUDIO GROUP</div><nav aria-label="Navigasi utama"><button type="button" onclick="goHome()">HOME</button><button type="button" onclick="openNovels()">NOVELS</button><button type="button" onclick="openAbout()">ABOUT</button></nav></header>
+<header><div class="logo" role="button" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter')goHome()"><span>LUCKY</span> STUDIO GROUP</div><nav aria-label="Navigasi utama"><button type="button" onclick="goHome()">HOME</button><button type="button" onclick="openNovels()">NOVELS</button><button type="button" onclick="openAbout()">ABOUT</button><button type="button" class="account-nav" id="accountNavBtn" onclick="handleAccountButton()">LOGIN</button></nav></header>
 <main>
 <div class="page active" id="homePage"><div class="hero"><div class="tag">OFFICIAL CREATIVE STUDIO</div><h1>EVERY STORY HAS A WORLD.<br><span>EVERY WORLD HAS A STORY.</span></h1><p>Selamat datang di Lucky Studio Group. Temukan cerita original, karakter menarik, dan dunia imajinasi dari karya-karya kami.</p><button class="btn" type="button" onclick="openNovels()">JELAJAHI NOVEL →</button></div></div>
 <section class="page" id="novelsPage"><div class="tag">OUR COLLECTION</div><h2>Featured Novels</h2><p class="muted">Jelajahi berbagai cerita original kami.</p><input class="search" id="search" placeholder="Cari novel..." oninput="render()"><div class="filters" id="filters"></div><div class="grid" id="catalog"></div></section>
@@ -39,6 +66,34 @@
 <section class="page" id="detailPage"><button class="back" onclick="goHome()">← Kembali ke katalog</button><div class="detail-card"><div class="detail-cover" id="detailCover"></div><div id="detailStatus"></div><h1 id="detailTitle"></h1><div class="tag" id="detailGenre"></div><p class="muted" id="detailDesc"></p><button class="btn" onclick="openChapters()">LIHAT DAFTAR BAB →</button></div></section>
 <section class="page" id="chaptersPage"><button class="back" onclick="openDetail(false)">← Kembali ke detail novel</button><div class="tag">DAFTAR ISI</div><h1 id="chaptersTitle">Daftar Bab</h1><p class="muted" id="chaptersNote"></p><div class="chapter-list" id="chapterList"></div></section>
 <section class="page" id="readerPage"><div class="reader-wrap"><button class="back" onclick="openChapters(false)">← Kembali ke daftar bab</button><div class="reader-toolbar"><div><div class="tag" id="readerNovel"></div><strong id="readerChapterLabel"></strong></div><div><button class="small" onclick="changeText(-1)">A−</button> <button class="small" onclick="changeText(1)">A+</button> <button class="small" onclick="toggleTheme()">Mode</button></div></div><article class="reader-paper" id="readerPaper"></article><div class="reader-nav"><button class="small" onclick="prevChapter()" id="prevButton" disabled>Sebelumnya</button><button class="small" onclick="nextChapter()" id="nextButton">Selanjutnya →</button></div></div></section>
+
+
+<div class="auth-overlay" id="authOverlay" role="dialog" aria-modal="true" aria-labelledby="authHeading" onclick="if(event.target===this)closeAuthModal()">
+  <div class="auth-card">
+    <button class="auth-close" type="button" onclick="closeAuthModal()" aria-label="Tutup">✕</button>
+    <div class="auth-brand"><span>LUCKY</span> STUDIO GROUP</div>
+    <p class="auth-sub">MEMBER ACCESS · AKUN PEMBACA</p>
+    <h2 id="authHeading" style="text-align:center;margin:0 0 16px">Selamat Datang</h2>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab" type="button" onclick="setAuthMode('login')">LOGIN</button>
+      <button class="auth-tab" id="registerTab" type="button" onclick="setAuthMode('register')">DAFTAR</button>
+    </div>
+    <form class="auth-form" id="authForm" onsubmit="submitAuth(event)">
+      <label class="auth-field" id="nameField" hidden>Nama pengguna
+        <input id="authName" type="text" autocomplete="name" placeholder="Nama yang ingin ditampilkan">
+      </label>
+      <label class="auth-field">Email
+        <input id="authEmail" type="email" autocomplete="email" placeholder="nama@email.com" required>
+      </label>
+      <label class="auth-field">Password
+        <input id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="Minimal 6 karakter" required>
+      </label>
+      <button class="auth-submit" id="authSubmit" type="submit">MASUK</button>
+    </form>
+    <div class="auth-message" id="authMessage" role="status" aria-live="polite"></div>
+    <p class="auth-note" id="authFootnote">Login menggunakan akun pembaca Lucky Studio Group.</p>
+  </div>
+</div>
 
 <div class="music-dock collapsed" id="musicDock" aria-label="LSG Music Player">
   <div class="music-head" onclick="toggleMusicPanel()">
@@ -67,6 +122,7 @@
 </div>
 
 <footer><strong>LUCKY STUDIO GROUP</strong><br>Official Novel & Creative Studio<br>© 2026 Lucky Studio Group. All Rights Reserved.</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const novels=[
   {
@@ -1855,7 +1911,152 @@ function renderMusicSuggestions(){
 }
 
 
+
+// LSG MEMBER AUTH — Supabase Auth
+// Isi kedua nilai ini dari Supabase > Project Settings > API.
+// Gunakan Project URL dan anon/public key. Jangan pernah memasukkan service_role key.
+const LSG_SUPABASE_URL = 'MASUKKAN_SUPABASE_PROJECT_URL';
+const LSG_SUPABASE_ANON_KEY = 'MASUKKAN_SUPABASE_ANON_PUBLIC_KEY';
+let lsgSupabase = null;
+let authMode = 'login';
+let lsgCurrentUser = null;
+
+function authConfigured(){
+  return LSG_SUPABASE_URL.startsWith('https://') &&
+    !LSG_SUPABASE_URL.includes('MASUKKAN_') &&
+    LSG_SUPABASE_ANON_KEY.length > 20 &&
+    !LSG_SUPABASE_ANON_KEY.includes('MASUKKAN_');
+}
+function authMessage(message,type='success'){
+  const el=$('authMessage');
+  el.textContent=message;
+  el.className='auth-message show '+type;
+}
+function clearAuthMessage(){
+  const el=$('authMessage');
+  el.textContent='';
+  el.className='auth-message';
+}
+function handleAccountButton(){if(lsgCurrentUser){const choice=confirm('Kamu login sebagai '+(lsgCurrentUser.email||'pembaca')+'. Tekan OK untuk logout, atau Cancel untuk menutup.');if(choice)memberLogout();return;}openAuthModal();}
+function openAuthModal(){
+  $('authOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  setAuthMode(lsgCurrentUser?'login':'login');
+  if(lsgCurrentUser){
+    authMessage('Kamu sudah login sebagai '+(lsgCurrentUser.user_metadata?.display_name||lsgCurrentUser.email)+'.','success');
+    $('authSubmit').textContent='TUTUP';
+    $('authSubmit').type='button';
+    $('authSubmit').onclick=closeAuthModal;
+    $('authForm').onsubmit=e=>{e.preventDefault();closeAuthModal();};
+  }else{
+    $('authSubmit').type='submit';
+    $('authSubmit').onclick=null;
+    $('authForm').onsubmit=submitAuth;
+    if(!authConfigured()) authMessage('Login belum aktif. Hubungkan project Supabase terlebih dahulu dengan mengisi URL dan anon/public key di bagian konfigurasi file.','error');
+  }
+}
+function closeAuthModal(){
+  $('authOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  clearAuthMessage();
+}
+function setAuthMode(mode){
+  authMode=mode;
+  $('nameField').hidden=mode!=='register';
+  $('authName').required=mode==='register';
+  $('authPassword').autocomplete=mode==='register'?'new-password':'current-password';
+  $('loginTab').classList.toggle('active',mode==='login');
+  $('registerTab').classList.toggle('active',mode==='register');
+  $('authHeading').textContent=mode==='login'?'Selamat Datang':'Buat Akun Pembaca';
+  $('authSubmit').textContent=mode==='login'?'MASUK':'DAFTAR AKUN';
+  $('authFootnote').textContent=mode==='login'?'Login menggunakan akun pembaca Lucky Studio Group.':'Pendaftaran membutuhkan email aktif. Konfirmasi email mungkin diminta oleh Supabase.';
+  $('authSubmit').type='submit';
+  $('authSubmit').onclick=null;
+  $('authForm').onsubmit=submitAuth;
+  clearAuthMessage();
+}
+async function submitAuth(event){
+  event.preventDefault();
+  if(!authConfigured()||!lsgSupabase){
+    authMessage('Supabase belum dikonfigurasi. Isi LSG_SUPABASE_URL dan LSG_SUPABASE_ANON_KEY di file HTML.','error');
+    return;
+  }
+  const email=$('authEmail').value.trim();
+  const password=$('authPassword').value;
+  const submit=$('authSubmit');
+  submit.disabled=true;
+  submit.textContent='MEMPROSES...';
+  clearAuthMessage();
+  try{
+    let result;
+    if(authMode==='register'){
+      const displayName=$('authName').value.trim();
+      result=await lsgSupabase.auth.signUp({
+        email,password,
+        options:{data:{display_name:displayName}}
+      });
+      if(result.error) throw result.error;
+      if(result.data.session){
+        setMemberSession(result.data.user);
+        authMessage('Pendaftaran berhasil. Akun kamu sudah aktif dan login.','success');
+      }else{
+        authMessage('Pendaftaran berhasil dikirim. Periksa email untuk konfirmasi akun, lalu login.','success');
+      }
+    }else{
+      result=await lsgSupabase.auth.signInWithPassword({email,password});
+      if(result.error) throw result.error;
+      setMemberSession(result.data.user);
+      authMessage('Login berhasil. Selamat membaca!','success');
+      setTimeout(closeAuthModal,900);
+    }
+  }catch(error){
+    authMessage(error.message||'Terjadi kesalahan. Coba lagi.','error');
+  }finally{
+    submit.disabled=false;
+    submit.textContent=authMode==='login'?'MASUK':'DAFTAR AKUN';
+  }
+}
+function setMemberSession(user){
+  lsgCurrentUser=user||null;
+  const btn=$('accountNavBtn');
+  if(!btn)return;
+  if(user){
+    const label=user.user_metadata?.display_name||user.email||'Akun';
+    btn.textContent='AKUN';
+    btn.title=label;
+  }else{
+    btn.textContent='LOGIN';
+    btn.title='Login atau daftar akun pembaca';
+  }
+}
+async function memberLogout(){
+  if(!lsgSupabase||!lsgCurrentUser)return;
+  const {error}=await lsgSupabase.auth.signOut();
+  if(error){alert('Logout gagal: '+error.message);return;}
+  setMemberSession(null);
+  alert('Kamu berhasil logout.');
+}
+async function initMemberAuth(){
+  if(!authConfigured()){
+    setMemberSession(null);
+    return;
+  }
+  if(!window.supabase?.createClient){
+    console.error('Supabase JS belum berhasil dimuat.');
+    return;
+  }
+  lsgSupabase=window.supabase.createClient(LSG_SUPABASE_URL,LSG_SUPABASE_ANON_KEY);
+  const {data,error}=await lsgSupabase.auth.getSession();
+  if(!error)setMemberSession(data.session?.user||null);
+  lsgSupabase.auth.onAuthStateChange((_event,session)=>{
+    setMemberSession(session?.user||null);
+  });
+}
+
+
 history.replaceState({page:'homePage'},'','#home');
 renderMusicSuggestions();
 renderFilters();render();
+initMemberAuth();
 </script></body></html>
+ 
