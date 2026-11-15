@@ -1830,7 +1830,7 @@ function openChapters(push=true){
   $('chaptersTitle').textContent=selected.title;
   $('chaptersNote').textContent=selected.status==='GRATIS'?'Novel ini dapat dibaca gratis.':'Pilih bab yang tersedia untuk mulai membaca.';
   let chapters=selected.chapters||[];
-  $('chapterList').innerHTML=chapters.length?chapters.map((c,i)=>`<button class="chapter-item" type="button" onclick="openReader(${i})"><span>${c.title}</span><small>Baca →</small></button>`).join(''):'<div class="empty">Daftar bab untuk novel ini belum dimasukkan. Naskah akan ditambahkan setelah data novelnya siap.</div>';
+  $('chapterList').innerHTML=chapters.length?chapters.map((c,i)=>`<button class="chapter-item" type="button" onclick="openReader(${i})"><span>${c.title}</span><small>Baca →</small></button>`).join(''):'<div class="empty">Maap mpruy novelnya belum di up ama ownernya tunggu when when bakal di up</div>';
   showPage('chaptersPage',push);
 }
 function openReader(i=0,push=true){
@@ -2059,4 +2059,3 @@ renderMusicSuggestions();
 renderFilters();render();
 initMemberAuth();
 </script></body></html>
- 
