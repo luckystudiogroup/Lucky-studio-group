@@ -26,7 +26,15 @@
 .music-dock.collapsed{width:min(210px,calc(100vw - 28px))}
 .music-dock.collapsed .music-body{display:none}
 .music-dock.collapsed .music-head{border-radius:11px}
-@media(max-width:480px){.music-dock{right:10px;bottom:10px}.music-dock:not(.collapsed){width:calc(100vw - 20px)}}
+@media(max-width:480px){
+  .music-dock{right:10px;bottom:10px}
+  .music-dock:not(.collapsed){width:calc(100vw - 20px);right:10px}
+  /* Saat mini, player menjorok ke kanan agar hanya tab kecil yang terlihat. */
+  .music-dock.collapsed{width:176px;right:-88px;bottom:18px;border-radius:14px}
+  .music-dock.collapsed .music-head{min-height:62px;padding:10px 12px;justify-content:flex-start}
+  .music-dock.collapsed .music-brand{width:78px;max-width:78px;line-height:1.35;font-size:12px}
+  .music-dock.collapsed .music-head-actions{display:none}
+}
 
 
 /* LSG MEMBER LOGIN & REGISTRATION */
