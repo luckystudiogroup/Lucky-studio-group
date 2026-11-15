@@ -60,6 +60,9 @@
 .auth-field select,.auth-field textarea{width:100%;padding:12px;background:#120e10;border:1px solid #57333b;border-radius:7px;color:#fff}
 .detail-card{margin-bottom:14px}.detail-card .search{margin:8px 0 14px}.admin-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.admin-row:last-child{border:0}.status-pending{color:#ffd27a}.status-approved{color:#9ae6b4}
 @media(max-width:480px){nav{gap:4px}nav button{font-size:10px;padding:8px 7px}}
+
+.member-room{max-width:900px;margin:0 auto}.member-welcome{background:linear-gradient(120deg,#4b101b,#21191c);border:1px solid #75404b;border-radius:12px;padding:24px;margin:14px 0 18px}.member-welcome h1{margin:8px 0}.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.member-tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}.member-tile h3{margin:0 0 8px}.member-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
 </style></head>
 <body>
 <header><div class="logo" role="button" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter')goHome()"><span>LUCKY</span> STUDIO GROUP</div><nav aria-label="Navigasi utama"><button type="button" onclick="goHome()">HOME</button><button type="button" onclick="openNovels()">NOVELS</button><button type="button" onclick="openAbout()">ABOUT</button><button type="button" class="account-nav" id="accountNavBtn" onclick="handleAccountButton()">LOGIN</button></nav></header>
@@ -69,6 +72,7 @@
 <section class="page" id="aboutPage"><div class="tag">WHO WE ARE</div><h2>About Lucky Studio Group</h2><p class="about">Lucky Studio Group adalah studio kreatif independen yang menaungi berbagai karya original, cerita, karakter, dan dunia imajinasi.</p></section>
 <section class="page" id="premiumPage"><button class="back" onclick="goHome()">← Kembali</button><div class="tag">LSG MEMBERSHIP</div><h2>Akses Premium</h2><p class="muted">Dukung karya Lucky Studio Group dan nikmati bab premium ketika akses berbayar telah diaktifkan.</p><div class="detail-card"><h3>LSG Premium</h3><p>Akses bab premium dan dukung penerbitan karya original.</p><p><strong>Harga dan metode pembayaran ditentukan oleh owner.</strong></p><label class="auth-field">Novel yang ingin diakses<select id="premiumNovel" class="search"></select></label><label class="auth-field">Catatan / bukti pembayaran (tautan opsional)<input id="premiumProof" class="search" placeholder="Tempel tautan bukti pembayaran"></label><button class="btn" onclick="submitPremiumRequest()">KIRIM PENGAJUAN</button><p id="premiumFeedback" class="muted" aria-live="polite"></p></div></section>
 <section class="page" id="adminPage"><button class="back" onclick="goHome()">← Kembali</button><div class="tag">PRIVATE WORKSPACE</div><h2>Owner Dashboard</h2><p class="muted">Kelola katalog dan pengajuan akses. Data yang disimpan pada versi ini masih berada di browser perangkat ini.</p><div class="detail-card"><h3>Tambah novel</h3><label class="auth-field">Judul<input id="adminTitle" class="search" placeholder="Judul novel"></label><label class="auth-field">Genre<input id="adminGenre" class="search" placeholder="Genre"></label><label class="auth-field">Deskripsi<textarea id="adminDesc" class="search" rows="3" placeholder="Sinopsis singkat"></textarea></label><button class="btn" onclick="adminAddNovel()">TAMBAH KE KATALOG</button></div><div class="detail-card" style="margin-top:16px"><h3>Daftar novel</h3><div id="adminNovelList"></div></div><div class="detail-card" style="margin-top:16px"><h3>Pengajuan premium</h3><div id="adminRequests"></div></div><p class="muted" style="font-size:12px">Catatan keamanan: dashboard ini adalah panel prototipe lokal, bukan sistem administrasi produksi. Jangan menerima pembayaran berdasarkan status browser. Verifikasi pembayaran dan hak akses harus dipindahkan ke backend Supabase dengan Row Level Security sebelum situs dipublikasikan.</p></div></section>
+<section class="page" id="memberPage"><div class="member-room"><button class="back" onclick="goHome()">← Kembali ke beranda</button><div class="tag">LUCKY STUDIO GROUP · MEMBER AREA</div><div class="member-welcome"><div class="tag">PRIVATE READER SPACE</div><h1>Selamat datang, <span id="memberDisplayName">Member</span>.</h1><p class="muted">Ini ruang akun pembaca LSG. Dari sini kamu bisa mengelola sesi akun dan menjelajahi koleksi cerita.</p></div><div class="member-grid"><div class="member-tile"><div class="tag">PROFIL AKUN</div><h3 id="memberProfileName">—</h3><p class="muted" id="memberProfileEmail">—</p><p class="muted" id="memberProfileStatus">Status: masuk</p></div><div class="member-tile"><div class="tag">LIBRARY</div><h3>Koleksi Novel</h3><p class="muted">Lanjutkan menjelajahi karya original Lucky Studio Group.</p><button class="small" type="button" onclick="openNovels()">BUKA KATALOG</button></div><div class="member-tile"><div class="tag">KEANGGOTAAN</div><h3>LSG Reader</h3><p class="muted">Akses gratis tersedia sesuai ketentuan karya. THE HIDDEN FLESH tetap gratis.</p><button class="small" type="button" onclick="openPremium()">INFO PREMIUM</button></div></div><div class="member-actions"><button class="btn" type="button" onclick="memberLogout()">LOGOUT</button></div></div></section>
 </main>
 <section class="page" id="detailPage"><button class="back" onclick="goHome()">← Kembali ke katalog</button><div class="detail-card"><div class="detail-cover" id="detailCover"></div><div id="detailStatus"></div><h1 id="detailTitle"></h1><div class="tag" id="detailGenre"></div><p class="muted" id="detailDesc"></p><button class="btn" onclick="openChapters()">LIHAT DAFTAR BAB →</button></div></section>
 <section class="page" id="chaptersPage"><button class="back" onclick="openDetail(false)">← Kembali ke detail novel</button><div class="tag">DAFTAR ISI</div><h1 id="chaptersTitle">Daftar Bab</h1><p class="muted" id="chaptersNote"></p><div class="chapter-list" id="chapterList"></div></section>
@@ -1811,7 +1815,7 @@ const novels=[
 ];;
 let category="Semua",selected=null,currentChapter=0,textSize=0,darkReader=false;
 const $=id=>document.getElementById(id);
-const pageIds=['homePage','novelsPage','aboutPage','detailPage','chaptersPage','readerPage','premiumPage','adminPage'];
+const pageIds=['homePage','novelsPage','aboutPage','detailPage','chaptersPage','readerPage','premiumPage','adminPage','memberPage'];
 function showPage(id,push=true){
   if(!pageIds.includes(id)) id='homePage';
   pageIds.forEach(pageId=>$(pageId).classList.toggle('active',pageId===id));
@@ -1972,7 +1976,7 @@ function clearAuthMessage(){
   el.textContent='';
   el.className='auth-message';
 }
-function handleAccountButton(){if(lsgCurrentUser){const choice=confirm('Kamu login sebagai '+(lsgCurrentUser.email||'pembaca')+'. Tekan OK untuk logout, atau Cancel untuk menutup.');if(choice)memberLogout();return;}openAuthModal();}
+function handleAccountButton(){if(lsgCurrentUser){renderMemberRoom();showPage('memberPage');return;}openAuthModal();}
 function openAuthModal(){
   $('authOverlay').classList.add('open');
   document.body.style.overflow='hidden';
@@ -2051,6 +2055,7 @@ async function submitAuth(event){
         setMemberSession(result.data.user);
         $('authPassword').value='';
         authMessage('Pendaftaran berhasil. Akun kamu sudah aktif dan login.','success');
+        renderMemberRoom();setTimeout(()=>{closeAuthModal();showPage('memberPage');},700);
       }else{
         authMessage('Pendaftaran berhasil dikirim. Periksa email untuk konfirmasi akun, lalu login.','success');
       }
@@ -2060,7 +2065,8 @@ async function submitAuth(event){
       setMemberSession(result.data.user);
       $('authPassword').value='';
       authMessage('Login berhasil. Selamat membaca!','success');
-      setTimeout(closeAuthModal,900);
+      renderMemberRoom();
+      setTimeout(()=>{closeAuthModal();showPage('memberPage');},700);
     }
   }catch(error){
     authMessage(error.message||'Terjadi kesalahan. Coba lagi.','error');
@@ -2068,6 +2074,14 @@ async function submitAuth(event){
     submit.disabled=false;
     submit.textContent=authMode==='login'?'MASUK':'DAFTAR AKUN';
   }
+}
+function renderMemberRoom(){
+  if(!lsgCurrentUser){openAuthModal();return;}
+  const name=lsgCurrentUser.user_metadata?.display_name||'Pembaca LSG';
+  $('memberDisplayName').textContent=name;
+  $('memberProfileName').textContent=name;
+  $('memberProfileEmail').textContent=lsgCurrentUser.email||'Email tidak tersedia';
+  $('memberProfileStatus').textContent=lsgCurrentUser.email_confirmed_at?'Status: email terkonfirmasi':'Status: menunggu konfirmasi email';
 }
 function setMemberSession(user){
   lsgCurrentUser=user||null;
@@ -2082,12 +2096,14 @@ function setMemberSession(user){
     btn.title='Login atau daftar akun pembaca';
   }
   refreshOwnerButton();
+  if(user && $('memberPage')) renderMemberRoom();
 }
 async function memberLogout(){
   if(!lsgSupabase||!lsgCurrentUser)return;
   const {error}=await lsgSupabase.auth.signOut();
   if(error){alert('Logout gagal: '+error.message);return;}
   setMemberSession(null);
+  showPage('homePage');
   alert('Kamu berhasil logout.');
 }
 async function initMemberAuth(){
@@ -2102,8 +2118,13 @@ async function initMemberAuth(){
   lsgSupabase=window.supabase.createClient(LSG_SUPABASE_URL,LSG_SUPABASE_ANON_KEY);
   const {data,error}=await lsgSupabase.auth.getSession();
   if(!error)setMemberSession(data.session?.user||null);
-  lsgSupabase.auth.onAuthStateChange((_event,session)=>{
+  lsgSupabase.auth.onAuthStateChange((event,session)=>{
     setMemberSession(session?.user||null);
+    if(event==='PASSWORD_RECOVERY'){
+      const next=prompt('Masukkan password baru (minimal 6 karakter):');
+      if(next && next.length>=6) setTimeout(()=>lsgSupabase.auth.updateUser({password:next}).then(({error})=>{if(error)alert('Gagal memperbarui password: '+error.message);else alert('Password berhasil diperbarui. Silakan login kembali.');}),0);
+      else if(next!==null) alert('Password minimal 6 karakter.');
+    }
   });
 }
 
