@@ -63,6 +63,12 @@
 
 .guide-card{line-height:1.75;margin-top:14px}.guide-card h2{margin-top:8px}.guide-card li{margin:7px 0}.guide-card p{line-height:1.75}.member-room{max-width:900px;margin:0 auto}.member-welcome{background:linear-gradient(120deg,#4b101b,#21191c);border:1px solid #75404b;border-radius:12px;padding:24px;margin:14px 0 18px}.member-welcome h1{margin:8px 0}.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.member-tile{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}.member-tile h3{margin:0 0 8px}.member-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 
+
+/* LSG novel poster support */
+.cover{height:auto;aspect-ratio:2/3;padding:0;overflow:hidden;background:#160e12;display:block}
+.cover img{display:block;width:100%;height:100%;aspect-ratio:2/3;object-fit:cover;object-position:center}
+.detail-cover{min-height:0;height:auto;aspect-ratio:2/3;max-width:260px;padding:0;overflow:hidden;background:#160e12;display:block}
+.detail-cover img{display:block;width:100%;height:100%;aspect-ratio:2/3;object-fit:contain;object-position:center}
 </style></head>
 <body>
 <header><div class="logo" role="button" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter')goHome()"><span>LUCKY</span> STUDIO GROUP</div><nav aria-label="Navigasi utama"><button type="button" onclick="goHome()">HOME</button><button type="button" onclick="openNovels()">NOVELS</button><button type="button" onclick="openAbout()">ABOUT</button><button type="button" onclick="openGuide()">PANDUAN</button><button type="button" class="account-nav" id="accountNavBtn" onclick="handleAccountButton()">LOGIN</button></nav></header>
@@ -155,6 +161,7 @@ const novels=[
     "genre": "Horor",
     "desc": "Kisah horor psikologis tentang trauma dan rahasia gelap manusia.",
     "status": "GRATIS",
+    "cover": "assets/posters/the-hidden-flesh.webp",
     "chapters": [
       {
         "title": "BAB 1 — MALAM YANG MERENGGUT SEGALANYA",
@@ -1842,11 +1849,11 @@ function openAbout(){showPage('aboutPage')}
 function openGuide(){showPage('guidePage')}
 function openDetail(push=true){if(!selected)return;showPage('detailPage',push)}
 function renderFilters(){let genres=['Semua',...new Set(novels.map(n=>n.genre))];$('filters').innerHTML=genres.map(g=>`<button class="${g===category?'active':''}" onclick="category='${g}';renderFilters();render()">${g}</button>`).join('')}
-function render(){let q=$('search').value.toLowerCase();let list=novels.filter(n=>(category==='Semua'||n.genre===category)&&n.title.toLowerCase().includes(q));$('catalog').innerHTML=list.map(n=>`<div class="book"><div class="cover">${n.title}</div><div class="info"><h3>${n.title}</h3><div class="tag">${n.genre}</div>${n.status?'<p><span class="pill">'+n.status+'</span></p>':''}<p>${n.desc}</p><button class="small" onclick="showDetail('${n.title}')">Detail Novel</button></div></div>`).join('')||'<p>Novel tidak ditemukan.</p>'}
+function render(){let q=$('search').value.toLowerCase();let list=novels.filter(n=>(category==='Semua'||n.genre===category)&&n.title.toLowerCase().includes(q));$('catalog').innerHTML=list.map(n=>`<div class="book"><div class="cover">${n.cover?`<img src="${n.cover}" alt="Poster ${n.title}" loading="lazy">`:n.title}</div><div class="info"><h3>${n.title}</h3><div class="tag">${n.genre}</div>${n.status?'<p><span class="pill">'+n.status+'</span></p>':''}<p>${n.desc}</p><button class="small" onclick="showDetail('${n.title}')">Detail Novel</button></div></div>`).join('')||'<p>Novel tidak ditemukan.</p>'}
 function showDetail(title,push=true){
   selected=novels.find(n=>n.title===title);if(!selected)return;
   renderMusicSuggestions();
-  $('detailCover').textContent=selected.title;$('detailTitle').textContent=selected.title;
+  $('detailCover').innerHTML=selected.cover?`<img src="${selected.cover}" alt="Poster ${selected.title}">`:selected.title;$('detailTitle').textContent=selected.title;
   $('detailGenre').textContent=selected.genre;$('detailDesc').textContent=selected.desc;
   $('detailStatus').innerHTML=selected.status?'<span class="pill">'+selected.status+'</span>':'';
   showPage('detailPage',push);
