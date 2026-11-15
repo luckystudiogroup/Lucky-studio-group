@@ -47,6 +47,7 @@
 .auth-field input:focus{border-color:#e04450}
 .auth-submit{width:100%;padding:13px;background:#b92334;border:0;border-radius:7px;color:white;font-weight:bold;cursor:pointer;margin-top:4px}
 .auth-submit:disabled{opacity:.55;cursor:wait}
+.auth-forgot{display:block;margin:2px auto 0;background:none;border:0;color:#f18b96;text-decoration:underline;font-size:12px;cursor:pointer;padding:7px}
 .auth-message{font-size:12px;line-height:1.5;padding:10px;border-radius:7px;display:none}
 .auth-message.show{display:block}
 .auth-message.error{background:#4a1c25;color:#ffc5cb}
@@ -95,6 +96,7 @@
         <input id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="Minimal 6 karakter" required>
       </label>
       <button class="auth-submit" id="authSubmit" type="submit">MASUK</button>
+      <button class="auth-forgot" id="forgotPasswordBtn" type="button" onclick="sendPasswordReset()">LUPA PASSWORD?</button>
     </form>
     <div class="auth-message" id="authMessage" role="status" aria-live="polite"></div>
     <p class="auth-note" id="authFootnote">Login menggunakan akun pembaca Lucky Studio Group.</p>
@@ -1918,7 +1920,7 @@ function renderMusicSuggestions(){
 
 
 
-// LSG MEMBER AUTH — Supabase Auth
+// LSG MEMBER AUTH — Supabase Auth (V6: password recovery added)
 // Isi kedua nilai ini dari Supabase > Project Settings > API.
 // Gunakan Project URL dan anon/public key. Jangan pernah memasukkan service_role key.
 const LSG_SUPABASE_URL = 'https://draemhzuhkxwxvqazksh.supabase.co';
@@ -1978,6 +1980,7 @@ function openAuthModal(){
   if(lsgCurrentUser){
     authMessage('Kamu sudah login sebagai '+(lsgCurrentUser.user_metadata?.display_name||lsgCurrentUser.email)+'.','success');
     $('authSubmit').textContent='TUTUP';
+    $('forgotPasswordBtn').hidden=true;
     $('authSubmit').type='button';
     $('authSubmit').onclick=closeAuthModal;
     $('authForm').onsubmit=e=>{e.preventDefault();closeAuthModal();};
@@ -2002,11 +2005,26 @@ function setAuthMode(mode){
   $('registerTab').classList.toggle('active',mode==='register');
   $('authHeading').textContent=mode==='login'?'Selamat Datang':'Buat Akun Pembaca';
   $('authSubmit').textContent=mode==='login'?'MASUK':'DAFTAR AKUN';
+  $('forgotPasswordBtn').hidden=mode!=='login';
   $('authFootnote').textContent=mode==='login'?'Login menggunakan akun pembaca Lucky Studio Group.':'Pendaftaran membutuhkan email aktif. Konfirmasi email mungkin diminta oleh Supabase.';
   $('authSubmit').type='submit';
   $('authSubmit').onclick=null;
   $('authForm').onsubmit=submitAuth;
+  $('forgotPasswordBtn').hidden=mode!=='login';
   clearAuthMessage();
+}
+async function sendPasswordReset(){
+  if(!authConfigured()||!lsgSupabase){authMessage('Supabase belum siap. Periksa konfigurasi koneksi terlebih dahulu.','error');return;}
+  const email=$('authEmail').value.trim();
+  if(!email){authMessage('Masukkan alamat email akun terlebih dahulu.','error');$('authEmail').focus();return;}
+  const btn=$('forgotPasswordBtn');btn.disabled=true;btn.textContent='MENGIRIM...';
+  try{
+    const redirectTo=window.location.href.split('#')[0];
+    const {error}=await lsgSupabase.auth.resetPasswordForEmail(email,{redirectTo});
+    if(error)throw error;
+    authMessage('Jika email terdaftar, tautan reset password akan dikirim. Periksa inbox dan folder spam.','success');
+  }catch(error){authMessage(error.message||'Permintaan reset password gagal.','error');}
+  finally{btn.disabled=false;btn.textContent='LUPA PASSWORD?';}
 }
 async function submitAuth(event){
   event.preventDefault();
@@ -2031,6 +2049,7 @@ async function submitAuth(event){
       if(result.error) throw result.error;
       if(result.data.session){
         setMemberSession(result.data.user);
+        $('authPassword').value='';
         authMessage('Pendaftaran berhasil. Akun kamu sudah aktif dan login.','success');
       }else{
         authMessage('Pendaftaran berhasil dikirim. Periksa email untuk konfirmasi akun, lalu login.','success');
@@ -2039,6 +2058,7 @@ async function submitAuth(event){
       result=await lsgSupabase.auth.signInWithPassword({email,password});
       if(result.error) throw result.error;
       setMemberSession(result.data.user);
+      $('authPassword').value='';
       authMessage('Login berhasil. Selamat membaca!','success');
       setTimeout(closeAuthModal,900);
     }
