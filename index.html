@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucky Studio Group</title>
+<title>Lucky Studio Group — Official Novel & Creative Studio</title>
 <style>
 :root{--bg:#100d0e;--panel:#21191c;--panel2:#1c1518;--red:#b92334;--pink:#e04450;--muted:#c9bfc1;--line:#493039;--reader:#f3ece8;--readerText:#282124}
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif}button,a{font:inherit}header{background:var(--panel2);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;z-index:5}.logo{font-weight:bold;font-size:clamp(15px,4vw,22px);white-space:nowrap}.logo span,h1 span{color:var(--pink)}nav{display:flex;gap:8px}nav button{color:white;background:transparent;border:1px solid transparent;border-radius:6px;padding:9px 10px;font-size:12px;cursor:pointer}nav button:active,nav button:focus-visible{background:#3a2028;border-color:#75404b;outline:none}.hero{padding:65px 7%;background:linear-gradient(120deg,#4b101b,#160e11)}.tag{color:#ed626e;letter-spacing:3px;font-size:12px}.hero h1{font-size:clamp(32px,8vw,55px);line-height:1.15}.hero p,.muted{color:var(--muted);line-height:1.7}.btn,.small{display:inline-block;background:var(--red);color:white;padding:12px 17px;text-decoration:none;border:0;border-radius:5px;cursor:pointer}.btn:active,.small:active{opacity:.8}section{padding:35px 6%}.search{width:100%;padding:14px;background:#241b1e;color:white;border:1px solid #57333b;border-radius:5px;margin:15px 0}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.filters button{padding:9px 13px;background:#281d20;color:white;border:1px solid #57333b;border-radius:20px;cursor:pointer}.filters .active{background:var(--red)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.book{background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden}.cover{height:180px;background:linear-gradient(145deg,#641c29,#160e12);display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-weight:bold;font-size:17px}.info{padding:13px}.info h3{font-size:15px;line-height:1.35}.info p{font-size:13px;color:var(--muted);line-height:1.6}.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#183c2a;color:#9ae6b4;font-size:11px;font-weight:bold;letter-spacing:.5px}.pill.neutral{background:#38272d;color:#e6b7c0}.page{display:none;min-height:70vh;padding:24px 6% 50px}.page.active{display:block}.back{background:#34252b;border:1px solid #62404a;color:#fff;padding:10px 14px;border-radius:5px;cursor:pointer;margin-bottom:20px}.detail-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}.detail-cover{min-height:190px;max-width:230px;margin:0 auto 20px;background:linear-gradient(145deg,#641c29,#160e12);display:grid;place-items:center;text-align:center;padding:20px;font-size:22px;font-weight:bold}.chapter-list{display:grid;gap:10px;margin-top:20px}.chapter-item{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);padding:15px;border-radius:7px;color:#fff;text-align:left;cursor:pointer}.chapter-item small{color:var(--muted)}.reader-wrap{max-width:760px;margin:auto}.reader-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.reader-paper{background:var(--reader);color:var(--readerText);padding:clamp(20px,5vw,42px);border-radius:9px;line-height:1.9;font-size:18px}.reader-paper h2{text-align:center;line-height:1.4;font-size:22px;margin:8px 0 30px}.reader-paper p{margin:0 0 17px;color:var(--readerText)}.reader-paper.dark{background:#21191c;color:#eee}.reader-paper.dark p{color:#eee}.reader-paper.large{font-size:21px}.reader-paper.smalltext{font-size:16px}.reader-nav{display:flex;justify-content:space-between;gap:12px;margin-top:18px}.reader-nav button:disabled{opacity:.35;cursor:not-allowed}.empty{padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--muted);line-height:1.6}footer{background:var(--panel2);text-align:center;padding:30px;color:#aaa;font-size:12px;margin-top:35px}.about{line-height:1.7;color:var(--muted)}
@@ -55,6 +55,10 @@
 .member-chip{display:none;color:#f6dfe3;font-size:11px;border:1px solid #75404b;border-radius:20px;padding:7px 9px;max-width:125px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:480px){header{align-items:flex-start;flex-wrap:wrap}nav{width:100%;justify-content:flex-end;flex-wrap:wrap}nav button{padding:8px 9px}.member-chip{margin-left:auto}}
 
+
+.auth-field select,.auth-field textarea{width:100%;padding:12px;background:#120e10;border:1px solid #57333b;border-radius:7px;color:#fff}
+.detail-card{margin-bottom:14px}.detail-card .search{margin:8px 0 14px}.admin-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}.admin-row:last-child{border:0}.status-pending{color:#ffd27a}.status-approved{color:#9ae6b4}
+@media(max-width:480px){nav{gap:4px}nav button{font-size:10px;padding:8px 7px}}
 </style></head>
 <body>
 <header><div class="logo" role="button" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter')goHome()"><span>LUCKY</span> STUDIO GROUP</div><nav aria-label="Navigasi utama"><button type="button" onclick="goHome()">HOME</button><button type="button" onclick="openNovels()">NOVELS</button><button type="button" onclick="openAbout()">ABOUT</button><button type="button" class="account-nav" id="accountNavBtn" onclick="handleAccountButton()">LOGIN</button></nav></header>
@@ -62,6 +66,8 @@
 <div class="page active" id="homePage"><div class="hero"><div class="tag">OFFICIAL CREATIVE STUDIO</div><h1>EVERY STORY HAS A WORLD.<br><span>EVERY WORLD HAS A STORY.</span></h1><p>Selamat datang di Lucky Studio Group. Temukan cerita original, karakter menarik, dan dunia imajinasi dari karya-karya kami.</p><button class="btn" type="button" onclick="openNovels()">JELAJAHI NOVEL →</button></div></div>
 <section class="page" id="novelsPage"><div class="tag">OUR COLLECTION</div><h2>Featured Novels</h2><p class="muted">Jelajahi berbagai cerita original kami.</p><input class="search" id="search" placeholder="Cari novel..." oninput="render()"><div class="filters" id="filters"></div><div class="grid" id="catalog"></div></section>
 <section class="page" id="aboutPage"><div class="tag">WHO WE ARE</div><h2>About Lucky Studio Group</h2><p class="about">Lucky Studio Group adalah studio kreatif independen yang menaungi berbagai karya original, cerita, karakter, dan dunia imajinasi.</p></section>
+<section class="page" id="premiumPage"><button class="back" onclick="goHome()">← Kembali</button><div class="tag">LSG MEMBERSHIP</div><h2>Akses Premium</h2><p class="muted">Dukung karya Lucky Studio Group dan nikmati bab premium ketika akses berbayar telah diaktifkan.</p><div class="detail-card"><h3>LSG Premium</h3><p>Akses bab premium dan dukung penerbitan karya original.</p><p><strong>Harga dan metode pembayaran ditentukan oleh owner.</strong></p><label class="auth-field">Novel yang ingin diakses<select id="premiumNovel" class="search"></select></label><label class="auth-field">Catatan / bukti pembayaran (tautan opsional)<input id="premiumProof" class="search" placeholder="Tempel tautan bukti pembayaran"></label><button class="btn" onclick="submitPremiumRequest()">KIRIM PENGAJUAN</button><p id="premiumFeedback" class="muted" aria-live="polite"></p></div></section>
+<section class="page" id="adminPage"><button class="back" onclick="goHome()">← Kembali</button><div class="tag">PRIVATE WORKSPACE</div><h2>Owner Dashboard</h2><p class="muted">Kelola katalog dan pengajuan akses. Data yang disimpan pada versi ini masih berada di browser perangkat ini.</p><div class="detail-card"><h3>Tambah novel</h3><label class="auth-field">Judul<input id="adminTitle" class="search" placeholder="Judul novel"></label><label class="auth-field">Genre<input id="adminGenre" class="search" placeholder="Genre"></label><label class="auth-field">Deskripsi<textarea id="adminDesc" class="search" rows="3" placeholder="Sinopsis singkat"></textarea></label><button class="btn" onclick="adminAddNovel()">TAMBAH KE KATALOG</button></div><div class="detail-card" style="margin-top:16px"><h3>Daftar novel</h3><div id="adminNovelList"></div></div><div class="detail-card" style="margin-top:16px"><h3>Pengajuan premium</h3><div id="adminRequests"></div></div><p class="muted" style="font-size:12px">Catatan keamanan: dashboard ini adalah panel prototipe lokal, bukan sistem administrasi produksi. Jangan menerima pembayaran berdasarkan status browser. Verifikasi pembayaran dan hak akses harus dipindahkan ke backend Supabase dengan Row Level Security sebelum situs dipublikasikan.</p></div></section>
 </main>
 <section class="page" id="detailPage"><button class="back" onclick="goHome()">← Kembali ke katalog</button><div class="detail-card"><div class="detail-cover" id="detailCover"></div><div id="detailStatus"></div><h1 id="detailTitle"></h1><div class="tag" id="detailGenre"></div><p class="muted" id="detailDesc"></p><button class="btn" onclick="openChapters()">LIHAT DAFTAR BAB →</button></div></section>
 <section class="page" id="chaptersPage"><button class="back" onclick="openDetail(false)">← Kembali ke detail novel</button><div class="tag">DAFTAR ISI</div><h1 id="chaptersTitle">Daftar Bab</h1><p class="muted" id="chaptersNote"></p><div class="chapter-list" id="chapterList"></div></section>
@@ -1803,7 +1809,7 @@ const novels=[
 ];;
 let category="Semua",selected=null,currentChapter=0,textSize=0,darkReader=false;
 const $=id=>document.getElementById(id);
-const pageIds=['homePage','novelsPage','aboutPage','detailPage','chaptersPage','readerPage'];
+const pageIds=['homePage','novelsPage','aboutPage','detailPage','chaptersPage','readerPage','premiumPage','adminPage'];
 function showPage(id,push=true){
   if(!pageIds.includes(id)) id='homePage';
   pageIds.forEach(pageId=>$(pageId).classList.toggle('active',pageId===id));
@@ -1851,7 +1857,7 @@ window.addEventListener('popstate',event=>{
   const page=event.state?.page;
   if(page&&pageIds.includes(page)){showPage(page,false);return;}
   const hash=location.hash;
-  const map={'#home':'homePage','#novels':'novelsPage','#about':'aboutPage','#detail':'detailPage','#chapters':'chaptersPage','#reader':'readerPage'};
+  const map={'#home':'homePage','#novels':'novelsPage','#about':'aboutPage','#detail':'detailPage','#chapters':'chaptersPage','#reader':'readerPage','#premium':'premiumPage','#admin':'adminPage'};
   showPage(map[hash]||'homePage',false);
 });
 
@@ -1921,6 +1927,33 @@ let lsgSupabase = null;
 let authMode = 'login';
 let lsgCurrentUser = null;
 
+// LSG V5 — premium request + local owner workspace
+// Isi email owner setelah deployment. Role produksi wajib diverifikasi server-side.
+const LSG_OWNER_EMAIL = 'GANTI_DENGAN_EMAIL_OWNER';
+const LSG_LOCAL_KEY = 'lsg_v5_workspace';
+function localWorkspace(){try{return JSON.parse(localStorage.getItem(LSG_LOCAL_KEY)||'{"requests":[]}')}catch(e){return {requests:[]}}}
+function saveWorkspace(data){localStorage.setItem(LSG_LOCAL_KEY,JSON.stringify(data))}
+function isOwner(){return !!(lsgCurrentUser && LSG_OWNER_EMAIL!=='GANTI_DENGAN_EMAIL_OWNER' && (lsgCurrentUser.email||'').toLowerCase()===LSG_OWNER_EMAIL.toLowerCase())}
+function refreshOwnerButton(){const b=$('ownerNavBtn');if(b)b.hidden=!isOwner()}
+function openPremium(){
+ const sel=$('premiumNovel');sel.innerHTML=novels.map(n=>`<option value="${escapeHtml(n.title)}">${escapeHtml(n.title)}</option>`).join('');
+ $('premiumFeedback').textContent='';showPage('premiumPage');
+}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function submitPremiumRequest(){
+ if(!lsgCurrentUser){$('premiumFeedback').textContent='Silakan login terlebih dahulu untuk mengirim pengajuan.';openAuthModal();return}
+ const w=localWorkspace();w.requests.push({id:Date.now(),email:lsgCurrentUser.email||'',novel:$('premiumNovel').value,proof:$('premiumProof').value.trim(),status:'Menunggu verifikasi',created:new Date().toLocaleString('id-ID')});saveWorkspace(w);
+ $('premiumFeedback').textContent='Pengajuan tersimpan di perangkat ini. Hubungi owner untuk verifikasi manual; ini belum memproses pembayaran.';$('premiumProof').value='';
+}
+function openAdmin(){if(!isOwner()){alert('Akses owner tidak tersedia. Pastikan email owner sudah dikonfigurasi dan akun telah login.');return}renderAdmin();showPage('adminPage')}
+function adminAddNovel(){if(!isOwner())return;const title=$('adminTitle').value.trim(),genre=$('adminGenre').value.trim(),desc=$('adminDesc').value.trim();if(!title||!genre||!desc){alert('Lengkapi judul, genre, dan deskripsi.');return}if(novels.some(n=>n.title.toLowerCase()===title.toLowerCase())){alert('Judul sudah ada.');return}novels.push({title,genre,desc,status:'PREMIUM',chapters:[]});$('adminTitle').value='';$('adminGenre').value='';$('adminDesc').value='';render();renderFilters();renderAdmin()}
+function adminDeleteNovel(title){const i=novels.findIndex(n=>n.title===title);adminDeleteNovelByIndex(i)}
+function adminDeleteNovelByIndex(i){if(!isOwner())return;if(i<0||i>=novels.length)return;if(!confirm('Hapus novel '+novels[i].title+' dari katalog sesi ini?'))return;novels.splice(i,1);render();renderFilters();renderAdmin()}
+function adminSetRequest(id,status){if(!isOwner())return;const w=localWorkspace();const r=w.requests.find(x=>x.id===id);if(r){r.status=status;saveWorkspace(w);renderAdmin()}}
+function renderAdmin(){
+ $('adminNovelList').innerHTML=novels.map((n,i)=>`<div class="admin-row"><span><strong>${escapeHtml(n.title)}</strong><br><small class="muted">${escapeHtml(n.genre)} · ${(n.chapters||[]).length} bab</small></span><button class="small" onclick="adminDeleteNovelByIndex(${i})">Hapus</button></div>`).join('');
+ const req=localWorkspace().requests;$('adminRequests').innerHTML=req.length?req.map(r=>`<div class="admin-row"><span><strong>${escapeHtml(r.email)}</strong><br><small>${escapeHtml(r.novel)} · ${escapeHtml(r.created)}<br>Status: <b class="${r.status==='Disetujui'?'status-approved':'status-pending'}">${escapeHtml(r.status)}</b>${r.proof?`<br>Bukti: ${escapeHtml(r.proof)}`:''}</small></span><span><button class="small" onclick="adminSetRequest(${r.id},'Disetujui')">Setujui</button> <button class="small" onclick="adminSetRequest(${r.id},'Ditolak')">Tolak</button></span></div>`).join(''):'<p class="muted">Belum ada pengajuan.</p>';
+}
 function authConfigured(){
   return LSG_SUPABASE_URL.startsWith('https://') &&
     !LSG_SUPABASE_URL.includes('MASUKKAN_') &&
@@ -2028,6 +2061,7 @@ function setMemberSession(user){
     btn.textContent='LOGIN';
     btn.title='Login atau daftar akun pembaca';
   }
+  refreshOwnerButton();
 }
 async function memberLogout(){
   if(!lsgSupabase||!lsgCurrentUser)return;
