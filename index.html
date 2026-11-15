@@ -7,6 +7,27 @@
 :root{--bg:#100d0e;--panel:#21191c;--panel2:#1c1518;--red:#b92334;--pink:#e04450;--muted:#c9bfc1;--line:#493039;--reader:#f3ece8;--readerText:#282124}
 *{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif}button,a{font:inherit}header{background:var(--panel2);padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;z-index:5}.logo{font-weight:bold;font-size:clamp(15px,4vw,22px);white-space:nowrap}.logo span,h1 span{color:var(--pink)}nav{display:flex;gap:8px}nav button{color:white;background:transparent;border:1px solid transparent;border-radius:6px;padding:9px 10px;font-size:12px;cursor:pointer}nav button:active,nav button:focus-visible{background:#3a2028;border-color:#75404b;outline:none}.hero{padding:65px 7%;background:linear-gradient(120deg,#4b101b,#160e11)}.tag{color:#ed626e;letter-spacing:3px;font-size:12px}.hero h1{font-size:clamp(32px,8vw,55px);line-height:1.15}.hero p,.muted{color:var(--muted);line-height:1.7}.btn,.small{display:inline-block;background:var(--red);color:white;padding:12px 17px;text-decoration:none;border:0;border-radius:5px;cursor:pointer}.btn:active,.small:active{opacity:.8}section{padding:35px 6%}.search{width:100%;padding:14px;background:#241b1e;color:white;border:1px solid #57333b;border-radius:5px;margin:15px 0}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.filters button{padding:9px 13px;background:#281d20;color:white;border:1px solid #57333b;border-radius:20px;cursor:pointer}.filters .active{background:var(--red)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.book{background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden}.cover{height:180px;background:linear-gradient(145deg,#641c29,#160e12);display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-weight:bold;font-size:17px}.info{padding:13px}.info h3{font-size:15px;line-height:1.35}.info p{font-size:13px;color:var(--muted);line-height:1.6}.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#183c2a;color:#9ae6b4;font-size:11px;font-weight:bold;letter-spacing:.5px}.pill.neutral{background:#38272d;color:#e6b7c0}.page{display:none;min-height:70vh;padding:24px 6% 50px}.page.active{display:block}.back{background:#34252b;border:1px solid #62404a;color:#fff;padding:10px 14px;border-radius:5px;cursor:pointer;margin-bottom:20px}.detail-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}.detail-cover{min-height:190px;max-width:230px;margin:0 auto 20px;background:linear-gradient(145deg,#641c29,#160e12);display:grid;place-items:center;text-align:center;padding:20px;font-size:22px;font-weight:bold}.chapter-list{display:grid;gap:10px;margin-top:20px}.chapter-item{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);padding:15px;border-radius:7px;color:#fff;text-align:left;cursor:pointer}.chapter-item small{color:var(--muted)}.reader-wrap{max-width:760px;margin:auto}.reader-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.reader-paper{background:var(--reader);color:var(--readerText);padding:clamp(20px,5vw,42px);border-radius:9px;line-height:1.9;font-size:18px}.reader-paper h2{text-align:center;line-height:1.4;font-size:22px;margin:8px 0 30px}.reader-paper p{margin:0 0 17px;color:var(--readerText)}.reader-paper.dark{background:#21191c;color:#eee}.reader-paper.dark p{color:#eee}.reader-paper.large{font-size:21px}.reader-paper.smalltext{font-size:16px}.reader-nav{display:flex;justify-content:space-between;gap:12px;margin-top:18px}.reader-nav button:disabled{opacity:.35;cursor:not-allowed}.empty{padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--muted);line-height:1.6}footer{background:var(--panel2);text-align:center;padding:30px;color:#aaa;font-size:12px;margin-top:35px}.about{line-height:1.7;color:var(--muted)}
 @media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}.cover{height:240px}.page{padding-left:10%;padding-right:10%}}
+
+/* LSG MUSIC PLAYER */
+.music-dock{position:fixed;right:14px;bottom:14px;z-index:30;width:min(360px,calc(100vw - 28px));background:#21191c;border:1px solid #75404b;border-radius:12px;box-shadow:0 12px 38px #0009;color:#fff;overflow:hidden}
+.music-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 13px;background:linear-gradient(110deg,#4b101b,#24151a);cursor:pointer}
+.music-brand{font-size:13px;font-weight:bold;letter-spacing:.7px}
+.music-brand span{color:#ff7782}
+.music-head-actions{display:flex;gap:7px}
+.music-icon-btn{border:1px solid #75404b;background:#321e24;color:#fff;border-radius:6px;padding:5px 9px;cursor:pointer;font-size:12px}
+.music-body{padding:12px;display:grid;gap:10px}
+.music-help{font-size:11px;line-height:1.5;color:#c9bfc1;margin:0}
+.music-row{display:flex;gap:7px}
+.music-input{min-width:0;flex:1;padding:10px;background:#120e10;border:1px solid #57333b;border-radius:6px;color:#fff;font-size:12px}
+.music-action{background:#b92334;border:0;color:#fff;border-radius:6px;padding:9px 11px;font-size:12px;cursor:pointer}
+.music-player-frame{width:100%;aspect-ratio:16/9;border:0;border-radius:7px;background:#100d0e}
+.music-suggestions{display:flex;flex-wrap:wrap;gap:6px}
+.music-suggestion{background:#302126;border:1px solid #57333b;color:#f1dfe2;border-radius:20px;padding:7px 9px;font-size:11px;cursor:pointer}
+.music-dock.collapsed{width:min(210px,calc(100vw - 28px))}
+.music-dock.collapsed .music-body{display:none}
+.music-dock.collapsed .music-head{border-radius:11px}
+@media(max-width:480px){.music-dock{right:10px;bottom:10px}.music-dock:not(.collapsed){width:calc(100vw - 20px)}}
+
 </style></head>
 <body>
 <header><div class="logo" role="button" tabindex="0" onclick="goHome()" onkeydown="if(event.key==='Enter')goHome()"><span>LUCKY</span> STUDIO GROUP</div><nav aria-label="Navigasi utama"><button type="button" onclick="goHome()">HOME</button><button type="button" onclick="openNovels()">NOVELS</button><button type="button" onclick="openAbout()">ABOUT</button></nav></header>
@@ -18,6 +39,33 @@
 <section class="page" id="detailPage"><button class="back" onclick="goHome()">← Kembali ke katalog</button><div class="detail-card"><div class="detail-cover" id="detailCover"></div><div id="detailStatus"></div><h1 id="detailTitle"></h1><div class="tag" id="detailGenre"></div><p class="muted" id="detailDesc"></p><button class="btn" onclick="openChapters()">LIHAT DAFTAR BAB →</button></div></section>
 <section class="page" id="chaptersPage"><button class="back" onclick="openDetail(false)">← Kembali ke detail novel</button><div class="tag">DAFTAR ISI</div><h1 id="chaptersTitle">Daftar Bab</h1><p class="muted" id="chaptersNote"></p><div class="chapter-list" id="chapterList"></div></section>
 <section class="page" id="readerPage"><div class="reader-wrap"><button class="back" onclick="openChapters(false)">← Kembali ke daftar bab</button><div class="reader-toolbar"><div><div class="tag" id="readerNovel"></div><strong id="readerChapterLabel"></strong></div><div><button class="small" onclick="changeText(-1)">A−</button> <button class="small" onclick="changeText(1)">A+</button> <button class="small" onclick="toggleTheme()">Mode</button></div></div><article class="reader-paper" id="readerPaper"></article><div class="reader-nav"><button class="small" onclick="prevChapter()" id="prevButton" disabled>Sebelumnya</button><button class="small" onclick="nextChapter()" id="nextButton">Selanjutnya →</button></div></div></section>
+
+<div class="music-dock collapsed" id="musicDock" aria-label="LSG Music Player">
+  <div class="music-head" onclick="toggleMusicPanel()">
+    <div class="music-brand"><span>LSG</span> MUSIC PLAYER</div>
+    <div class="music-head-actions">
+      <button class="music-icon-btn" type="button" id="musicMinBtn" aria-label="Buka pemutar musik" onclick="event.stopPropagation();toggleMusicPanel()">Buka ▲</button>
+    </div>
+  </div>
+  <div class="music-body">
+    <p class="music-help">Putar musik dari YouTube sambil membaca. Cari lagu di YouTube, lalu tempel tautan video di bawah.</p>
+    <div class="music-row">
+      <input class="music-input" id="musicSearchInput" type="search" placeholder="Cari musik atau suasana..." aria-label="Cari musik">
+      <button class="music-action" type="button" onclick="searchMusic()">Cari</button>
+    </div>
+    <div class="music-row">
+      <input class="music-input" id="musicUrlInput" type="text" placeholder="Tempel link YouTube / ID video" aria-label="Tautan YouTube">
+      <button class="music-action" type="button" onclick="loadMusicVideo()">Putar</button>
+    </div>
+    <iframe class="music-player-frame" id="musicFrame" title="YouTube music player" src="about:blank" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+    <div>
+      <p class="music-help" style="margin-bottom:7px">Rekomendasi sesuai novel yang sedang dibuka:</p>
+      <div class="music-suggestions" id="musicSuggestions"></div>
+    </div>
+    <p class="music-help">Kontrol volume dan lanjutkan video tersedia di pemutar YouTube. Musik akan tetap tampil saat berpindah halaman selama panel tidak ditutup.</p>
+  </div>
+</div>
+
 <footer><strong>LUCKY STUDIO GROUP</strong><br>Official Novel & Creative Studio<br>© 2026 Lucky Studio Group. All Rights Reserved.</footer>
 <script>
 const novels=[
@@ -1715,6 +1763,7 @@ function renderFilters(){let genres=['Semua',...new Set(novels.map(n=>n.genre))]
 function render(){let q=$('search').value.toLowerCase();let list=novels.filter(n=>(category==='Semua'||n.genre===category)&&n.title.toLowerCase().includes(q));$('catalog').innerHTML=list.map(n=>`<div class="book"><div class="cover">${n.title}</div><div class="info"><h3>${n.title}</h3><div class="tag">${n.genre}</div>${n.status?'<p><span class="pill">'+n.status+'</span></p>':''}<p>${n.desc}</p><button class="small" onclick="showDetail('${n.title}')">Detail Novel</button></div></div>`).join('')||'<p>Novel tidak ditemukan.</p>'}
 function showDetail(title,push=true){
   selected=novels.find(n=>n.title===title);if(!selected)return;
+  renderMusicSuggestions();
   $('detailCover').textContent=selected.title;$('detailTitle').textContent=selected.title;
   $('detailGenre').textContent=selected.genre;$('detailDesc').textContent=selected.desc;
   $('detailStatus').innerHTML=selected.status?'<span class="pill">'+selected.status+'</span>':'';
@@ -1749,6 +1798,64 @@ window.addEventListener('popstate',event=>{
   const map={'#home':'homePage','#novels':'novelsPage','#about':'aboutPage','#detail':'detailPage','#chapters':'chaptersPage','#reader':'readerPage'};
   showPage(map[hash]||'homePage',false);
 });
+
+// LSG MUSIC PLAYER — YouTube embed tanpa API key
+function toggleMusicPanel(){
+  const dock=$('musicDock');
+  dock.classList.toggle('collapsed');
+  $('musicMinBtn').textContent=dock.classList.contains('collapsed')?'Buka ▲':'Tutup ▼';
+}
+function getMusicVideoId(value){
+  const raw=(value||'').trim();
+  if(/^[a-zA-Z0-9_-]{11}$/.test(raw))return raw;
+  try{
+    const u=new URL(raw);
+    if(u.hostname.includes('youtu.be'))return u.pathname.split('/').filter(Boolean)[0]||'';
+    if(u.hostname.includes('youtube.com')||u.hostname.includes('youtube-nocookie.com')){
+      if(u.pathname==='/watch')return u.searchParams.get('v')||'';
+      const parts=u.pathname.split('/').filter(Boolean);
+      if(['embed','shorts','live'].includes(parts[0]))return parts[1]||'';
+    }
+  }catch(e){}
+  const match=raw.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/|live\/))([a-zA-Z0-9_-]{11})/);
+  return match?match[1]:'';
+}
+function loadMusicVideo(){
+  const value=$('musicUrlInput').value;
+  const id=getMusicVideoId(value);
+  if(!id){alert('Link YouTube belum valid. Tempel link video biasa atau Shorts yang valid.');return;}
+  $('musicFrame').src='https://www.youtube-nocookie.com/embed/'+id+'?rel=0&playsinline=1';
+  $('musicUrlInput').value='https://www.youtube.com/watch?v='+id;
+  $('musicDock').classList.remove('collapsed');
+  $('musicMinBtn').textContent='Tutup ▼';
+}
+function searchMusic(){
+  const q=$('musicSearchInput').value.trim();
+  if(!q){alert('Tulis dulu musik yang ingin dicari.');return;}
+  window.open('https://www.youtube.com/results?search_query='+encodeURIComponent(q),'_blank','noopener');
+}
+function getNovelMusicQueries(){
+  const title=(selected?.title||'').toUpperCase();
+  if(title.includes('HIDDEN FLESH'))return ['dark psychological horror ambient instrumental','suspense horror background music','dark cinematic tension instrumental'];
+  if(title.includes('DUKUN SALAH ALAMAT'))return ['mystical Indonesian comedy background music','quirky spooky comedy instrumental','funny horror cartoon background music'];
+  if(title.includes('ZEARTH'))return ['epic fantasy adventure orchestral music','magical exploration soundtrack instrumental','wonder fantasy adventure background music'];
+  if(title.includes('IDENTITAS YANG TERTUKAR'))return ['emotional drama piano instrumental','touching cinematic piano background','soft emotional background music'];
+  if(title.includes('KEHIDUPAN KEDUA'))return ['fantasy isekai adventure orchestral','peaceful fantasy instrumental','epic journey soundtrack'];
+  if(title.includes('JOMBLO DI DUNIA HANTU'))return ['spooky horror ambient instrumental','ghostly eerie background music','dark suspense soundtrack'];
+  return ['cinematic instrumental background music','relaxing reading music instrumental','fantasy ambient soundtrack'];
+}
+function renderMusicSuggestions(){
+  const host=$('musicSuggestions');
+  if(!host)return;
+  host.innerHTML=getNovelMusicQueries().map(q=>'<button class="music-suggestion" type="button" data-query="'+q.replace(/"/g,'&quot;')+'">'+q+'</button>').join('');
+  host.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{
+    $('musicSearchInput').value=btn.dataset.query;
+    searchMusic();
+  }));
+}
+
+
 history.replaceState({page:'homePage'},'','#home');
+renderMusicSuggestions();
 renderFilters();render();
 </script></body></html>
