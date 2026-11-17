@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luckystudiogroup.github.io/Lucky-studio-group/sitemap.xml
